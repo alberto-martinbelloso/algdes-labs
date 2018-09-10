@@ -38,17 +38,17 @@ def run_all_tests():
 
 #run_all_tests()
 
-input_path = "/Users/Arin/PycharmProjects/exercise1/data/sm-illiad-in.txt"
-output_path = "/Users/Arin/PycharmProjects/exercise1/data/sm-illiad-out.txt"
+input_path = "./data/sm-illiad-in.txt"
+output_path = "./data/sm-illiad-out.txt"
 run_test(input_path, output_path)
 
-# input_path = "/Users/Arin/PycharmProjects/exercise1/data/sm-friends-in.txt"
+# input_path = "./data/sm-friends-in.txt"
 #
 # testRead = data_extractor.read_input_data_from_file(input_path)
 # print (f"Males => {testRead.male}")
 # print (f"Females => {testRead.female}")
 #
-# output_path = "/Users/Arin/PycharmProjects/exercise1/data/sm-friends-out.txt"
+# output_path = "./data/sm-friends-out.txt"
 #
 # testOutput = data_extractor.read_output_data_from_file(output_path)
 # print(f"Expected matchings => {testOutput.male_to_female_matchings}")
@@ -59,7 +59,7 @@ run_test(input_path, output_path)
 # print(f"Result => {testOutput == output_data}")
 #
 #
-# in_out_paths = data_extractor.get_in_out_paths_in_directory("/Users/Arin/PycharmProjects/exercise1/data/")
+# in_out_paths = data_extractor.get_in_out_paths_in_directory("./data/")
 # print(f"In out paths => {in_out_paths}")
 #
 # print(f"Dir => {os.getcwd()}")
