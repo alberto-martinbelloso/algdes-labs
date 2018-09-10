@@ -10,54 +10,37 @@ def read_input_file_into_entries(path):
     with open(path, mode='r') as file:
         for line in file:
             if line.startswith("#"):
-                #print(f"Passing a line => {line}")
                 pass
             elif re.match(r"^\d+ .+$", line):
-                #print(f"Name line => {line}")
                 id = line.split(" ")[0]
                 name = line.split(" ")[1][:-1]
-                #print(f"Name => {name}")
                 ids.append(id)
-                names[id] = names #implemented as name to id mapper
+                names[id] = name #implemented as name to id mapper
                 entries[id] = []
             elif re.match("^\d+:(?: \d+)+.+$", line):
-                print(f"Preference line => {line}")
                 position = int(line.split(":")[0]) - 1
                 preferences = entries[ids[position]]
                 references = line[:-1].split(" ")
-                #print(f"References => {references}")
                 for ref in references[1:]:
                     if re.match(r"\d+", ref):
                         ref_position = int(ref) - 1
-                        #print(f"Appending => {ref_position}")
                         preferences.append(ids[ref_position])
             else:
-                print(f"Non readable line => {line}")
+                print("WARNING => Non readable line.")
 
-    print(f"Entries => {entries}")
     males = {}
     females = {}
-    print(f"Names len => {len(ids)}")
-    print(f"Entries len => {len(entries)}")
     male_count = 0
     female_count = 0
     for i in range(len(ids)):
         id = ids[i]
-        print(f"i => {i}")
-        print(f"Entries[id] => {entries[id]}")
         if i % 2 == 0:
             male_count += 1
-            #print(f"Adding male => {id}")
             males[id] = entries[id]
         else:
             female_count += 1
-            #print(f"Adding female => {id}")
             females[id] = entries[id]
 
-    print(f"Female count => {female_count}")
-    print(f"Male count => {male_count}")
-    print(f"Females result len => {len(females)}")
-    print(f"Males result len => {len(males)}")
     input_data = InputData()
     input_data.female = females
     input_data.male = males
@@ -75,19 +58,6 @@ def read_output_data_from_file(path):
                 female = fields[2][:-1]
                 output_data.male_to_female_matchings.append((male, female))
     return output_data
-
-
-def split_into_male_female(entries):
-    print("Used the split function")
-    input_data = InputData()
-    is_even = True
-    for key in entries:
-        if is_even:
-            input_data.male[key] = entries[key]
-        else:
-            input_data.female[key] = entries[key]
-        is_even = not is_even
-    return input_data
 
 
 def read_input_data_from_file(path):
@@ -128,7 +98,6 @@ class OutputData:
 
     def __eq__(self, o: object) -> bool:
         if not isinstance(o, OutputData):
-            #print("Type doesn't match")
             return False
 
         return set(self.male_to_female_matchings) == set(o.male_to_female_matchings)
