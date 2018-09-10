@@ -30,6 +30,9 @@ def gale_shapely(input_data: InputData):
 
     return dictionary_matchings_to_output_data(current_matchings)
 
+def ids_to_names_mapping(curent_matchings, input_data):
+    for match in curent_matchings:
+        
 
 def dictionary_matchings_to_output_data(dictionary_matchings):
     output_data = OutputData()
