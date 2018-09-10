@@ -1,0 +1,42 @@
+\documentclass{tufte-handout}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\pagestyle{empty}
+
+
+\title{Stable Matching Report}
+\author{Rafal Piotr Markiewicz, Alberto Martin Belloso, Rimniceanu Sabin and Albert Llebaria Holda}
+
+\begin{document}
+  \maketitle
+
+  \section{Results}
+
+  Our implementation produces the expected results on all input--output file pairs. The current implementation has been developed with python. 
+ 
+
+  \section{Implementation details}
+
+  	The men's preferences are stored in a dictionary where each key consists of a man and its value consists on an ordered list of women.  %
+  	\sidenote{ \{
+  		"Wayne": ["Chicago","Boston","Detroit"],
+  		"Val":["Boston","Detroit","Chicago"],
+  		"Xavier":["Detroit","Boston","Chicago"]
+  		\}
+  	} 
+	The same dictionary structure is used for the womens priority list. Each match is represented as a list where m,w are [w,m] and such list is stored in the final matchings list. In order to improve the algorithm, once a man (let's call \textit{m} to these handsome man) has been matched with a women (\textit{w}), \textit{w} is removed from man's priority list. Therefore, if the match between \textit{m} and \textit{w} is unmatched due another man (\textit{m'}) has a higher priority than \textit{m} in \textit{w}, m will not ask again to \textit{w} because \textit{w} has been "discarted" for him. 
+	
+	
+	We can check find a free man who has not proposed to every woman in time $[\ldots]$, because we store $[\ldots]$.
+	
+	With these data structures, our implementation runs in time $O(n^2)$ %
+	\sidenote{
+		Replace with your actual running time.
+	} on inputs with $n$ men and $n$ women.
+
+
+\end{document}
