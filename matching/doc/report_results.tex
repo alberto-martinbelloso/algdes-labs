@@ -9,7 +9,7 @@
 
 
 \title{Stable Matching Report}
-\author{Rafal Piotr Markiewicz, Alberto Martin Belloso, Rimniceanu Sabin and Albert Llebaria Holda}
+\author{Michal Derdak, Tomas Vit, Kristinn þór Jónsson, Rafal Piotr Markiewicz, Alberto Martin Belloso, Rimniceanu Sabin and Albert Llebaria Holda}
 
 \begin{document}
   \maketitle
@@ -31,12 +31,9 @@
 	The same dictionary structure is used for the womens priority list. Each match is represented as a list where m,w are [w,m] and such list is stored in the final matchings list. In order to improve the algorithm, once a man (let's call \textit{m} to these handsome man) has been matched with a women (\textit{w}), \textit{w} is removed from man's priority list. Therefore, if the match between \textit{m} and \textit{w} is unmatched due another man (\textit{m'}) has a higher priority than \textit{m} in \textit{w}, m will not ask again to \textit{w} because \textit{w} has been "discarted" for him. 
 	
 	
-	We can check find a free man who has not proposed to every woman in time $[\ldots]$, because we store $[\ldots]$.
+	The timing results from the our algorithm in the test case of 500 matches has an average time of 152.67 ms to find a free man who has not proposed to every woman. Also, at the same scenario, the implemented code takes an average time of 1012.81 ms to finish the algorithm.
 	
-	With these data structures, our implementation runs in time $O(n^2)$ %
-	\sidenote{
-		Replace with your actual running time.
-	} on inputs with $n$ men and $n$ women.
+	With these data structures, our implementation runs in time $O(n^2)$ on inputs with $n$ men and $n$ women.
 
 
 \end{document}

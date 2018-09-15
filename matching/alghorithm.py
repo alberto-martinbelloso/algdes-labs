@@ -1,10 +1,15 @@
 from data_extractor import OutputData, InputData
+import time
 
 
 def gale_shapely(input_data: InputData):
     current_matchings = {}
     males = input_data.male
     females = input_data.female
+
+    start = round((time.time() * 1000), 2)
+    average = 0
+    counter = 0
 
     while len(current_matchings) != len(females):
         male_keys = list(males.keys())
@@ -18,9 +23,16 @@ def gale_shapely(input_data: InputData):
                 elif female_preferences.index(male_key) < female_preferences.index(
                         current_matchings[female_to_propose_to]):
                     current_matchings[female_to_propose_to] = male_key
+                average += (round((time.time() * 1000), 2) - start)
+                counter += 1
             if len(male_preferences) == 0:
                 del males[male_key]
 
+    average = round(average / counter, 2)
+    end = round((time.time() * 1000) - start, 2)
+
+    print('INFO => Total algorithm time is {} '.format(end))
+    print('INFO => Average time to find a match is {} for {} matches. '.format(average, len(current_matchings)))
     return ids_to_names_mapping(current_matchings, input_data)
 
 
