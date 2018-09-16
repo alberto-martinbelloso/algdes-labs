@@ -1,5 +1,5 @@
-Code for stable matching exercise
-=================================
+Code for stable matching exercise Group C
+==========================================
 
 Requirements
 -----------------
