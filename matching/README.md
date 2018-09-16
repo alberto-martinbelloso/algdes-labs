@@ -5,13 +5,13 @@ Requirements
 -----------------
 
 * Python 3.6
-* Input files in ´data´ folder under the root of where ´runner.py´ is
+* Input files in `data` folder under the root of where `runner.py` is
 
 Running the program
 -------------------
 
-The main is ´runner.py´ as such this is the file to run.
-Typically from the command line it's ´py runner.py´
+The main is `runner.py` as such this is the file to run.
+Typically from the command line it's `py runner.py`
 
 Output
 -----------------
@@ -33,7 +33,7 @@ Typical output is as follows:
 	Test successful =>  True
 
 *Notes:*	
-* It will run all the files in the ´data´ folder with names following the exercise convention, outputting on each run which test it's executing.
-* It print 2 maps, first the expected output as per the ´data´ file and the second is the processed one through our algorithm
-* It will also print out the length of each of these maps
+* It will run all the files in the `data` folder with names following the exercise convention, outputting on each run which test it's executing.
+* It print 2 maps, first the expected output as per the `data` file and the second is the processed one through our algorithm.
+* It will also print out the length of each of these maps.
 * Finally it will assert weather the test passed which is done by comparing each pair in the executed output with the expected.
