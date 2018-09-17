@@ -4,6 +4,8 @@ class Point:
         self.id = id
         self.x = float(x)
         self.y = float(y)
+    def __str__(self):
+        return f"{self.id} {self.x} {self.y}"
 
 def parse(file):
     points = []
