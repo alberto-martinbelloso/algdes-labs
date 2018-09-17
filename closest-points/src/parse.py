@@ -1,49 +1,59 @@
-
 import os
 
+
 class Point:
+    id: str
+    x: float
+    y: float
+
     def __init__(self, id, x, y):
         self.id = id
         self.x = float(x)
         self.y = float(y)
+
     def __str__(self):
         return f"{self.id} {self.x} {self.y}"
 
-def testOutFile(pointsLength, fileName, outTestFile = "../data/closest-pair-out.txt"):
-    with open(outTestFile) as f:
+
+def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-out.txt"):
+    with open(out_test_file) as f:
         for line in f:
-            if(fileName.split("/")[-1].split("-")[0] in line):
+            if file_name.split("/")[-1].split("-")[0] in line:
                 length = line.split(" ")[1]
-                if(float(length) != float(pointsLength)):
-                    raise Exception(f"length of the parsed points is different from the output file \n file name: {fileName} \n was: {pointsLength} \n should be: {length}")
+                if float(length) != float(points_length):
+                    raise Exception(
+                        f"length of the parsed points is different from the output file \n file "
+                        f"name: {file_name} \n was: {points_length} \n should be: {length}")
+
 
 def parse(file):
     points = []
     with open(file) as f:
         for line in f:
-            splittedLine = line.split(None)
-            length = len(splittedLine)
+            splitted_line = line.split(None)
+            length = len(splitted_line)
 
-            if(length < 3 or length > 3):
+            if length < 3 or length > 3:
                 continue
-            elif(line.startswith("EOF") or line == "\n"):
+            elif line.startswith("EOF") or line == "\n":
                 break
             else:
                 try:
-                    point = Point(splittedLine[0], splittedLine[1], splittedLine[2])
+                    point = Point(splitted_line[0], splitted_line[1], splitted_line[2])
                     points.append(point)
                 except ValueError:
                     print('Non-numeric data found in the file.')
-    
-    testOutFile(len(points), file)
+
+    test_out_file(len(points), file)
 
     return points
 
-def parseAll(folder):
+
+def parse_all(folder):
     result = []
 
     for file in os.listdir(folder):
-        if (file.endswith(".txt") and file not in "closest-pair-out.txt"):
+        if file.endswith(".txt") and file not in "closest-pair-out.txt":
             result.append((file, parse(f"{folder}{file}")))
-    
+
     return result
