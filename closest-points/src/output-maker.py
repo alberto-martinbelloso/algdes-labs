@@ -1,7 +1,5 @@
 from parse import Point
 
-def output(points, outputPath):
+def output(fileName, length, distance, outputPath):
     with open(outputPath, "w") as f:
-        for point in points:
-            f.write(point.__str__())
-            f.write("\n")
+        f.write(f"{fileName} {length} {distance}")
