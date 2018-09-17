@@ -1,25 +1,27 @@
-from decimal import Decimal
 
 class Point:
     def __init__(self, id, x, y):
         self.id = id
-        self.x = x
-        self.y = y
+        self.x = float(x)
+        self.y = float(y)
+    def __str__(self):
+        return f"{self.id} {self.x} {self.y}"
 
-# def parse(file):
-#     start = False
-#     points = []
-#     with open(file) as f:
-#         for line in f:
-#             if(line.startswith("1") or line.startswith("0")):
-#                 start = True
-#             elif(line.startswith("EOF")):
-#                 break
-#             if(start):
-#                 splittedLine = line.split(" ").
-#                 points.append(Point(splittedLine[0], splittedLine[1], splittedLine[2]))
-#     return points
+def parse(file):
+    points = []
+    with open(file) as f:
+        for line in f:
+            splittedLine = list(filter(None, line.split(" ")))
+            length = len(splittedLine)
 
-# points = parse("./../data/a280-tsp.txt")
-# for point in points:
-#     print(point.id)
+            if(length < 3 or length > 3):
+                continue
+            elif(line.startswith("EOF")):
+                break
+            else:
+                try:
+                    point = Point(splittedLine[0], splittedLine[1], splittedLine[2])
+                    points.append(point)
+                except ValueError:
+                    print('Non-numeric data found in the file.')
+    return points
