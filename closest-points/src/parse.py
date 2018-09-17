@@ -12,10 +12,10 @@ class Point:
         self.y = float(y)
 
     def __str__(self):
-        return f"({self.x} {self.y})"
+        return f"({self.id}, {self.x}, {self.y})"
 
     def __repr__(self) -> str:
-        return f"({self.x} {self.y})"
+        return f"({self.id}, {self.x}, {self.y})"
 
 
 def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-out.txt"):
@@ -29,9 +29,9 @@ def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-
                         f"name: {file_name} \n was: {points_length} \n should be: {length}")
 
 
-def parse(file):
+def parse(file_name):
     points = []
-    with open(file) as f:
+    with open(file_name) as f:
         for line in f:
             splitted_line = line.split(None)
             length = len(splitted_line)
@@ -45,18 +45,18 @@ def parse(file):
                     point = Point(splitted_line[0], splitted_line[1], splitted_line[2])
                     points.append(point)
                 except ValueError:
-                    print('Non-numeric data found in the file.')
+                    print(f"Non-numeric data found in the file => {file_name}")
 
-    test_out_file(len(points), file)
+    test_out_file(len(points), file_name)
 
     return points
 
 
-def parse_all(folder):
+def parse_all(folder) -> list:
     result = []
 
-    for file in os.listdir(folder):
-        if file.endswith(".txt") and file not in "closest-pair-out.txt":
+    for file in sorted(os.listdir(folder)):
+        if file.endswith(".txt") and file not in ["closest-pair-out.txt", "result-out.txt"]:
             result.append((file, parse(f"{folder}{file}")))
 
     return result
