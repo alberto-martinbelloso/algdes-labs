@@ -47,18 +47,23 @@ def smallest_middle_belt_distance(middle_belt: list) -> float:
     assert length >= 2
 
     distances = [distance(middle_belt[i], middle_belt[j]) for i in range(length - 1) for j in
-                 range(i, min(length, i + 7))]
-    return min(distances)
+                 range(i + 1, min(length, i + 7))]
+    smallest_belt_distance = min(distances)
+    return smallest_belt_distance
 
 
 def find_min_distance(points: list) -> float:
     length = len(points)
     assert length <= 3
-
     distances = [distance(points[i], points[j]) for i in range(length - 1) for j in
-                 range(i, length)]
-    return min(distances)
+                 range(i + 1, length)]
+    min_dist = min(distances)
+
+    return min_dist
 
 
 def distance(first: Point, second: Point) -> float:
-    return math.sqrt(math.pow(first.x - second.x, 2) + math.pow(first.y - second.y, 2))
+    dist = math.sqrt(math.pow(first.x - second.x, 2) + math.pow(first.y - second.y, 2))
+    #print(f"First => {first} Second => {second}")
+    #print(f"Calculate distance => {dist}")
+    return dist

@@ -12,7 +12,10 @@ class Point:
         self.y = float(y)
 
     def __str__(self):
-        return f"{self.id} {self.x} {self.y}"
+        return f"({self.x} {self.y})"
+
+    def __repr__(self) -> str:
+        return f"({self.x} {self.y})"
 
 
 def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-out.txt"):
