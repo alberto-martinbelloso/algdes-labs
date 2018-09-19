@@ -25,8 +25,8 @@ def read_input_file_into_entries(path):
                     if re.match(r"\d+", ref):
                         ref_position = int(ref) - 1
                         preferences.append(ids[ref_position])
-            else:
-                print("WARNING => Non readable line.")
+            #else:
+                #print("WARNING => Non readable line.")
 
     males = {}
     females = {}

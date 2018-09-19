@@ -8,33 +8,34 @@ from alghorithm import gale_shapely
 
 def run_test(input_path, expected_output_path):
     #test_name = input_path[:-7]
-    test_name = input_path.rsplit('\\', 1)[-1]
-    print("")
-    print("")
-    print(f"Running test    =>  {test_name}")
-    print(f"Input path      =>  {input_path}")
-    print(f"Output path     =>  {expected_output_path}")
+    #test_name = input_path.rsplit('\\', 1)[-1]
+    #print("")
+    #print("")
+    #print(f"Running test    =>  {test_name}")
+    #print(f"Input path      =>  {input_path}")
+    #print(f"Output path     =>  {expected_output_path}")
     input_data = data_extractor.read_input_data_from_file(input_path)
     expected_output_data = data_extractor.read_output_data_from_file(expected_output_path)
     actual_output_data = gale_shapely(input_data)
 
-    print(f"Expected data   =>  {expected_output_data}")
-    print(f"Executed data   =>  {actual_output_data}")
-    print(f"Expected length =>  {len(expected_output_data.male_to_female_matchings)}")
-    print(f"Executed length =>  {len(actual_output_data.male_to_female_matchings)}")
-    print("")
+    #print(f"Expected data   =>  {expected_output_data}")
+    #print(f"Executed data   =>  {actual_output_data}")
+    #print(f"Expected length =>  {len(expected_output_data.male_to_female_matchings)}")
+    #print(f"Executed length =>  {len(actual_output_data.male_to_female_matchings)}")
+    #print("")
 
-    executed_output_file_path = test_name.rsplit('-', 1)[0] + "-out.txt"
+    #executed_output_file_path = test_name.rsplit('-', 1)[0] + "-out.txt"
 
     #delete_if_exists("./out/" + executed_output_file_path)
-    delete_if_exists(executed_output_file_path)
+    #delete_if_exists(executed_output_file_path)
 
     for p in actual_output_data.male_to_female_matchings:
-        output(p[0], p[1], executed_output_file_path)
+        print(f"{p[0]} -- {p[1]}")
+        #output(p[0], p[1], executed_output_file_path)
         #output(p[0], p[1], "./out/" + executed_output_file_path)
 
-    data_matches = expected_output_data == actual_output_data
-    print(f"Test successful =>  {data_matches}")
+    #data_matches = expected_output_data == actual_output_data
+    #print(f"Test successful =>  {data_matches}")
 
 
 def run_all_tests():

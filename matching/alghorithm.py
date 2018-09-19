@@ -31,8 +31,8 @@ def gale_shapely(input_data: InputData):
     average = round(average / counter, 2)
     end = round((time.time() * 1000) - start, 2)
 
-    print('INFO => Total algorithm time is {} '.format(end))
-    print('INFO => Average time to find a match is {} for {} matches. '.format(average, len(current_matchings)))
+    #print('INFO => Total algorithm time is {} '.format(end))
+    #print('INFO => Average time to find a match is {} for {} matches. '.format(average, len(current_matchings)))
     return ids_to_names_mapping(current_matchings, input_data)
 
 
