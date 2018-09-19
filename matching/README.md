@@ -37,3 +37,4 @@ Typical output is as follows:
 * It print 2 maps, first the expected output as per the `data` file and the second is the processed one through our algorithm.
 * It will also print out the length of each of these maps.
 * Finally it will assert weather the test passed which is done by comparing each pair in the executed output with the expected.
+* Creates output files identical in name and formatting to the provided ones in the root folder
