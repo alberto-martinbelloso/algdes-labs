@@ -1,6 +1,6 @@
 import math
 
-from src.parse import Point
+from parse import Point
 
 
 def closest_point_full(points: list):
@@ -21,7 +21,7 @@ def closest_point(x_sorted: list, y_sorted: list) -> float:
     closest_right = closest_point(x_sorted[mid_x_pos:], y_sorted_right)
 
     smallest_distance = min(closest_left, closest_right)
-
+z
     middle_belt_y_sorted = [p for p in y_sorted if abs(p.x - mid_x_val) <= smallest_distance]
     if len(middle_belt_y_sorted) < 2:
         return smallest_distance

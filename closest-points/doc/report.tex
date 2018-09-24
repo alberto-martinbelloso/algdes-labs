@@ -9,22 +9,15 @@
 
 
 \title{Closest Pair Report}
-\author{Alice Cooper and Bob Marley}
+\author{Michal Derdak, Tomas Vit, Kristinn þór Jónsson, Rafal Piotr Markiewicz, Alberto Martin Belloso, Rimniceanu Sabin and Albert Llebaria Holda}
 
 \begin{document}
   \maketitle
 
   \section{Results}
 
-  Our implementation produces the expected results on all input--output file pairs, except {\tt slotermeier-23-tsp.txt}, where our code reports distance 2.531 as the shortest distance.
-  This may be because of rounding errors, or differences between {\tt float} and {\tt double} on various machines.
-  \sidenote{%
-  Complete the report by filling in your correct names,
-  filling in the parts marked $[\ldots]$,
-  and changing other parts wherever necessary.
-  For instance, if your implementation passes all tests, then write that.
-  Remove the sidenotes in your final hand-in.
-  }
+  Our implementation produces the expected results on all input--output file pairs. 
+  The current implementation has been developed with python3.
 
   The following table shows the closest pairs in the input files {\tt wc-instance-*.txt}.
   Here $n$ denotes the number of points in the input,
@@ -34,26 +27,30 @@
   \begin{tabular}{rrrr}\toprule
     $n$ & $u$ & $v$ & $\delta$ \\\midrule
     2 & 0 & 1 & 1 \\
-    $[\ldots]$ \\\bottomrule
+    6 & 0 & 0 & 1 \\
+    14 & 0 & 0 & 1 \\
+    30 & 0 & 0 & 1 \\
+    62 & 0 & 0 & 1 \\
+    126 & 0 & 0 & 1 \\
+    254 & 0 & 0 & 1 \\
+    1022 & 0 & 0 & 1 \\
+    4094 & 0 & 0 & 1 \\
+    16382 & 0 & 0 & 1 \\
+    65534 & 0 & 0 & 1 \\
   \end{tabular}
 
 
   \section{Implementation details}
+  We create two lists, one sorted by x and the other one by y ($P_x$ and $P_y$).
+  For the next recursive calls, we find the middle position and value of x, and with this, we split        $P_y$ into two new lists ($Q_y$ and $R_y$). Once we have this, the next recursive calls will have as arguments the x-sorted lists splitted by the middle position ($Q_x$ for the left side and $R_x$ for the right side) and the two new y-sorted lists ($Q_y$ and $R_y$). 
+  When the length of the curent x-sorted list is equal or smaller than 3, we find the minimum distance between its points, which will be the distances returned by the recursive calls, one for the left and one for the right. 
+  After the recursion, we find the smallest distance of both left side points and right side points, called $\delta$.  
 
-  We resort by $y$-coordinates in each recursive step.
-
-  For the comparison of points close to $s$ in $S_y$ we inspect 15 points,
-  as explained (5.10) of Kleinberg and Tardos, \emph{Algorithm Design}, Addison--Wesley 2008.
-  Here is the corresponding part of our code:
-  \begin{verbatim}
-    min = [...]
-    for (s [...]
-      for [...]
-        if (s.distance(...) < min) [...]
-  \end{verbatim}
+  A part from that distance we also need to find the minimum distance in the middle region ($S$ from the book). We construct the list $S$ sorted by y-coordinate: $S_y$. If there is only one point in this list, we return the previous smallest distance $\delta$. If not, we compute the minimum distance inspecting the 15 closest point to the current point or, if the length of $S_y$ is smaller than 15, we inspect all the points.
+  
+  Having the minimum distance in $S$ and $\delta$, we return the smallest one between these two, which will correspond to the closest points distance.
 
   Our running time is $O(n\log n)$ for $n$ points.
-  \sidenote{Change or delete as necessary, add anything else you find interesting about your implemenation.}
 
 
 \end{document}

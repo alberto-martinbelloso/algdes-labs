@@ -45,7 +45,8 @@ def parse(file_name):
                     point = Point(splitted_line[0], splitted_line[1], splitted_line[2])
                     points.append(point)
                 except ValueError:
-                    print(f"Non-numeric data found in the file => {file_name}")
+                    #print(f"Non-numeric data found in the file => {file_name}")
+                    pass
 
     test_out_file(len(points), file_name)
 
