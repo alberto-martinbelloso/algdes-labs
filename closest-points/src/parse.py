@@ -17,6 +17,7 @@ class Point:
     def __repr__(self) -> str:
         return f"({self.id}, {self.x}, {self.y})"
 
+
 class Distance:
     fromPoint: Point
     toPoint: Point
@@ -33,6 +34,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"({self.fromPoint.id}, {self.toPoint.id}, {self.distance})"
 
+
 def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-out.txt"):
     with open(out_test_file) as f:
         for line in f:
@@ -44,27 +46,31 @@ def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-
                         f"name: {file_name} \n was: {points_length} \n should be: {length}")
 
 
-def parse(file_name):
-    points = []
+def parse(file_name) -> list:
     with open(file_name) as f:
-        for line in f:
-            splitted_line = line.split(None)
-            length = len(splitted_line)
-
-            if length < 3 or length > 3:
-                continue
-            elif line.startswith("EOF") or line == "\n":
-                break
-            else:
-                try:
-                    point = Point(splitted_line[0], splitted_line[1], splitted_line[2])
-                    points.append(point)
-                except ValueError:
-                    #print(f"Non-numeric data found in the file => {file_name}")
-                    pass
+        points = parse_lines(f)
 
     test_out_file(len(points), file_name)
+    return points
 
+
+def parse_lines(lines) -> list:
+    points = []
+    for line in lines:
+        splitted_line = line.split(None)
+        length = len(splitted_line)
+
+        if length < 3 or length > 3:
+            continue
+        elif line.startswith("EOF") or line == "\n":
+            break
+        else:
+            try:
+                point = Point(splitted_line[0], splitted_line[1], splitted_line[2])
+                points.append(point)
+            except ValueError:
+                # print(f"Non-numeric data found in the file => {file_name}")
+                pass
     return points
 
 
