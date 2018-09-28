@@ -1,6 +1,6 @@
-from parse import *
-from algorithm import closest_point_full
-from output_maker import *
+from src.parse import *
+from src.algorithm import closest_point_full
+from src.output_maker import *
 
 # file_name = "/Users/Arin/PyCharm Projects/AlgDes/closest-points/data/berlin52-tsp.txt"
 folder_path = "../data/"

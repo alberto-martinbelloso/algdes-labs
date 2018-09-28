@@ -1,6 +1,6 @@
 import math
 
-from parse import Point, Distance
+from src.parse import Point, Distance
 
 
 def closest_point_full(points: list) -> Distance:
