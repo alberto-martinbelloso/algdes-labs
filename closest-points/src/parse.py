@@ -17,6 +17,21 @@ class Point:
     def __repr__(self) -> str:
         return f"({self.id}, {self.x}, {self.y})"
 
+class Distance:
+    fromPoint: Point
+    toPoint: Point
+    distance: float
+
+    def __init__(self, fromPoint, toPoint, distance):
+        self.fromPoint = fromPoint
+        self.toPoint = toPoint
+        self.distance = distance
+
+    def __str__(self):
+        return f"({self.fromPoint.id}, {self.toPoint.id}, {self.distance})"
+
+    def __repr__(self) -> str:
+        return f"({self.fromPoint.id}, {self.toPoint.id}, {self.distance})"
 
 def test_out_file(points_length, file_name, out_test_file="../data/closest-pair-out.txt"):
     with open(out_test_file) as f:

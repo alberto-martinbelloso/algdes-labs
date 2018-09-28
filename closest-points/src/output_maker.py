@@ -1,6 +1,6 @@
 import errno
 
-from parse import Point
+from src.parse import Point
 import os
 
 def output(file_name, length, distance, output_path, input_folder):
