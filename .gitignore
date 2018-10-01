@@ -200,3 +200,4 @@ fabric.properties
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+/.vs
