@@ -4,8 +4,8 @@ from itertools import zip_longest
 from model import SequenceRes, Sequence
 
 
-def test_output(output_file: str, data: list) -> None:
-    expected_result = extract_output(output_file)
+def test_output(expected_output_file: str, data: list) -> None:
+    expected_result = extract_output(expected_output_file)
     assert len(expected_result) == len(data), "Length of outputs didn't match"
 
     for i in range(len(expected_result)):
