@@ -42,6 +42,6 @@ def extract_raw_data(input_data: str) -> list:
 def parse_raw_to_sequence(raw_data: RawDataObject) -> Sequence:
     head_args = raw_data.head_line.strip(">").split()
     name_args = takewhile(lambda el: not re.fullmatch("\d+", el), head_args)
-    name = reduce(lambda el, acc: el + " " + acc, name_args, "")
+    name = reduce(lambda el, acc: el + " " + acc, name_args, "").strip()
     seq = reduce(lambda el, acc: el + acc.strip(), raw_data.data_lines, "")
     return Sequence(name, seq)

@@ -17,7 +17,7 @@ def parse_cost_file(file_name: str) -> dict:
             for char in split:
                 inner_dict = {}
                 for score in scores:
-                    inner_dict[score[0]] = score[i]
+                    inner_dict[score[0]] = int(score[i])
                 main_dict[char] = inner_dict
                 i = i + 1
     except FileNotFoundError:

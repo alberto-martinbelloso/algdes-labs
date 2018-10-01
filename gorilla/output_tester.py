@@ -5,13 +5,21 @@ from model import SequenceRes, Sequence
 
 
 def test_output(expected_output_file, data: list) -> None:
-    expected_result = extract_output(expected_output_file)
-    assert len(expected_result) == len(data), "Length of outputs didn't match"
+    expected_result = sorted(extract_output(expected_output_file), key=lambda x: x.value)
+    data = sorted(data, key=lambda x: x.value)
+    assert len(expected_result) == len(data), f"{len(expected_result)} is not {len(data)}"
 
     for i in range(len(expected_result)):
-        assert expected_result[i] == data[i], f"{expected_result[i]} is not {data[i]}"
+        test_compare(expected_result[i], data[i])
 
     print("Test successful")
+
+
+def test_compare(first: SequenceRes, second: SequenceRes):
+    assert first.value == second.value
+    assert (first.first_seq == second.first_seq and first.second_seq == second.second_seq) \
+           or (first.second_seq == second.first_seq and first.first_seq == second.second_seq), \
+        f" {first} is not {second}"
 
 
 def extract_output(output_file) -> list:
