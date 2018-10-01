@@ -4,7 +4,7 @@ from itertools import zip_longest
 from model import SequenceRes, Sequence
 
 
-def test_output(expected_output_file: str, data: list) -> None:
+def test_output(expected_output_file, data: list) -> None:
     expected_result = extract_output(expected_output_file)
     assert len(expected_result) == len(data), "Length of outputs didn't match"
 
@@ -31,7 +31,7 @@ def grouper(n, iterable, fillvalue=None):
 
 def parse_lines(head_line: str, first_seq_line: str, second_seq_line: str) -> SequenceRes:
     head_args = re.split(r"(?:--)|(?:: )", head_line)
-    assert len(head_args) == 3
+    assert len(head_args) == 3, f"Expected len 3, actual args => {head_args}"
     first_seq = Sequence(head_args[0], first_seq_line.strip())
     second_seq = Sequence(head_args[1], second_seq_line.strip())
     return SequenceRes(first_seq, second_seq, int(head_args[2]))
