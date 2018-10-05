@@ -11,7 +11,7 @@ class Sequence:
         return f"(name: {self.name}, seq: {self.seq})"
 
     def __repr__(self) -> str:
-        return super().__repr__()
+        return self.__str__()
 
     def __eq__(self, o: object) -> bool:
         if isinstance(o, Sequence):
@@ -34,7 +34,7 @@ class SequenceRes:
         return f"(first: {self.first_seq}, second: {self.second_seq}, value: {self.value})"
 
     def __repr__(self) -> str:
-        return f"(first: {self.first_seq}, second: {self.second_seq}, value: {self.value})"
+        return f"(first: {self.first_seq},\n second: {self.second_seq},\n value: {self.value})"
 
     def __eq__(self, o: object) -> bool:
         if isinstance(o, SequenceRes):

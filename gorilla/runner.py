@@ -12,50 +12,22 @@
 import time
 from sys import stdin
 
-from algorithm import calc_val
+from re_algorithm import calc_val
 from cost_parser import parse_cost_file
 from input_parser import extract_input_data
 from it_algorithm import calc_vals
 from model import SequenceRes, Sequence
-from output_tester import test_output
-
-
-# data = stdin
-
-# print(results['A']['A'])  # 4
-# print(results['A']['F'])  # -2
-# print(results['R']['R'])  # 5
-
-# cost_dict = parse_cost_file("data/BLOSUM62.txt")
-# for k in cost_dict:
-#     print_line = [f"{j}: {cost_dict[k][j]}" for j in cost_dict[k]]
-#     print(f"{k} => {print_line}")
-
-
-# result = extract_input_data(data)
-# for r in result:
-#     print(r)
-
-# output = [
-#     SequenceRes(Sequence("Sphinx", "KQR-------K"), Sequence("Snark", "KQRIKAAKABK"), -8),
-#     SequenceRes(Sequence("Sphinx", "KQRK"), Sequence("Bandersnatch", "K-AK"), 5),
-#     SequenceRes(Sequence("Snark", "KQRIKAAKABK"), Sequence("Bandersnatch", "-------KA-K"), -18),
-# ]
-#
-# test_output(data, output)
 
 
 # just for testing
 # with open("data/HbB_FASTAs-out.txt") as file:
 # test_output(file, output)
 
-def process_file(input_file, values: dict, output_file=None):
+def process_file(input_file, values: dict):
     input_data = extract_input_data(input_file)
     results = calculate_all_with_all(input_data, values)
-    if output_file is not None:
-        test_output(output_file, results)
-    else:
-        for res in results: print(res)
+
+    for res in results: print(format_output(res))
 
 
 def calculate_all_with_all(inputs: list, values: dict):
@@ -75,9 +47,16 @@ def calculate_single(first_input: Sequence, second_input: Sequence, values: dict
     second_res_seq = Sequence(second_input.name, result[2])
     return SequenceRes(first_res_seq, second_res_seq, result[0])
 
+def format_output(output: SequenceRes) -> str:
+    return f"{output.first_seq.name}--{output.second_seq.name}: {output.value}\n" \
+           f"{output.first_seq.seq}\n" \
+           f"{output.second_seq.seq}"
+
+
 
 in_data = stdin
 
 vals = parse_cost_file("data/BLOSUM62.txt")
 
 process_file(in_data, vals)
+
