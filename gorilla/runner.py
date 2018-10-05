@@ -44,7 +44,7 @@ def format_output(output: SequenceRes) -> str:
 
 in_data = stdin
 
-vals = parse_cost_file("data/BLOSUM62.txt")
+vals = parse_cost_file("BLOSUM62.txt")
 
 process_file(in_data, vals)
 
