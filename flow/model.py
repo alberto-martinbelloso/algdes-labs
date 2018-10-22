@@ -28,9 +28,5 @@ class Edge:
     def current_capacity(self) -> int:
         return self.capacity - self.flow if self.capacity != -1 else -1
 
-    def increase_flow(self, increase_val: int) -> int:
-        self.flow += increase_val
-        return self.flow
-
     def reverse(self):
         return Edge(self.destination, self.origin, self.capacity, 0, True)

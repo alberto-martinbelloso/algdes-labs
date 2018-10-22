@@ -9,21 +9,15 @@ def maximum_flow(edges: list, source: int, sink: int) -> list:
         fill_flow(flow_res)
         update_reverse_edges(flow_res, edge_dict)
         flow_res = breadth_first_search(edge_dict, source, sink)
-        print("Flow res")
-        print(flow_res)
 
-    list_of_lists = [edge_dict[key] for key in edge_dict]
-    return [edge for l in list_of_lists for edge in l if edge.flow > 0]
+    all_edges = [edge for key in edge_dict for edge in edge_dict[key]]
+    return [edge for edge in all_edges if edge.flow > 0]
 
 
 def breadth_first_search(edges: dict, source: int, sink: int) -> Optional[list]:
     queue = []
     parents = {}
     visited = []
-    reverse_edges = [e for key in edges for e in edges[key] if e.is_reversed]
-    print("Running breadth first")
-    # for el in reverse_edges:
-    # print(el)
 
     queue.append(source)
 
@@ -31,15 +25,10 @@ def breadth_first_search(edges: dict, source: int, sink: int) -> Optional[list]:
         current_node = queue.pop(0)
         if current_node in edges:
             for edge in edges[current_node]:
-                if edge.is_reversed:
-                    print("Checking reverse edge")
                 if edge.has_space() and edge.destination not in visited:
                     visited.append(edge.destination)
                     queue.append(edge.destination)
                     parents[edge.destination] = current_node
-                    if edge.is_reversed:
-                        print(f"Reverse edge is valid => {edge}")
-                        print(f"Parents {parents}")
                     if edge.destination == sink:
                         return create_path(parents, edges, source, sink)
 
@@ -52,7 +41,6 @@ def create_path(parents: dict, edges: dict, source: int, sink: int) -> list:
     while current_node is not source:
         parent = parents[current_node]
         edge = next(e for e in edges[parent] if e.destination == current_node)
-        print(f"Edge in path => {edge}")
         path.append(edge)
         current_node = parent
 
@@ -83,7 +71,7 @@ def has_not_overflown_edges(edges: list) -> bool:
 def fill_flow(edge_path: list) -> None:
     bottleneck = min(edge.current_capacity() for edge in edge_path if edge.capacity != -1)
     for edge in edge_path:
-        edge.increase_flow(bottleneck)
+        edge.flow += bottleneck
 
 
 def update_reverse_edges(filled_edges: list, edges: dict) -> None:
@@ -91,4 +79,3 @@ def update_reverse_edges(filled_edges: list, edges: dict) -> None:
         rev = next(r for r in edges[edge.destination] if
                    r.is_reversed != edge.is_reversed and r.destination == edge.origin)
         rev.flow -= edge.flow
-    print("Finished update reverse")
