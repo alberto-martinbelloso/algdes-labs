@@ -21,3 +21,20 @@ def parse_input():
 
 def parse_to_edges(array_input: list) -> list:
     return [Edge(array[0], array[1], array[2]) for array in array_input]
+
+
+def parse_vertexes() -> dict:
+    vertexes = {}
+    count = 0
+    total_count = -1
+    with(open('./data/rail.txt')) as f:
+        for line in f:
+            if total_count == -1:
+                total_count = int(line)
+            elif count < total_count:
+               vertexes[count] = line.strip()
+               count += 1
+            else:
+                break
+    return vertexes
+
