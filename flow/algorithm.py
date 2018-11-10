@@ -10,6 +10,7 @@ def maximum_flow(edges: list, source: int, sink: int) -> list:
         update_reverse_edges(flow_res, edge_dict)
         flow_res = breadth_first_search(edge_dict, source, sink)
 
+
     all_edges = [edge for key in edge_dict for edge in edge_dict[key]]
     return [edge for edge in all_edges if edge.flow > 0]
 
@@ -54,6 +55,11 @@ def make_edge_dict(edges: list) -> dict:
         add_el_to_list_in_dict(edge_dict, edge, edge.origin)
         add_el_to_list_in_dict(edge_dict, edge.reverse(), edge.destination)
 
+    for v in edge_dict:
+        for edge in edge_dict[v]:
+            if edge.is_reversed:
+                edges.append(edge)
+
     return edge_dict
 
 
@@ -78,4 +84,4 @@ def update_reverse_edges(filled_edges: list, edges: dict) -> None:
     for edge in filled_edges:
         rev = next(r for r in edges[edge.destination] if
                    r.is_reversed != edge.is_reversed and r.destination == edge.origin)
-        rev.flow -= edge.flow
+        rev.capacity += edge.flow
