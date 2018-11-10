@@ -9,70 +9,201 @@
 
 
 \title{Flow Report}
-\author{Anatoli Cooper and Boris Marley}
+\author{Bureau of Investigative Matters on behalf of the glorious Soviet Motherland, Group C}
 
 \begin{document}
   \maketitle
 
   \section{Results}
 
-  Our implementation successfully computes a flow of 163 on the input file, confirming the analysis of the American enemy.
-  \sidenote{%
-  Complete the report by filling in your correct names,
-  filling in the parts marked $[\ldots]$,
-  and changing other parts wherever necessary.
-  Remove the sidenotes in your final hand-in.
-  Insert `comrades!' and `for the motherland' wherever you see fit.
-  }
+  Our implementation successfully computes a flow of 163 on the input file, confirming the analysis of the Imperialist scum.
 
   We have analysed the possibilities of descreasing the capacities near Minsk.
-  Our analysis is summaries in the following table:\sidenote{%
-    Complete and correct the table.
-  }
+  Our analysis is summarised in the following table:
 
 \bigskip
   \begin{tabular}{rccc}\toprule
     Case & 4W--48 & 4W--49 & Effect on flow \\\midrule
-    1& 30& 20 & no change \\
-    2& 20 &30 & no change \\
-    3&20 & 20& $-10$ \\
-    $[\ldots]$ \\\bottomrule
+    0& 30 & 30 & no change \\
+    1& 10 & 10 & $-20$ \\
+    2& 10 & 20 & $-10$ \\
+    3& 20 & 10 & $-10$ \\
+    4& 20 & 20 & no change \\
+    5& 30 & 10 & no change \\
+    6& 10 & 30 & no change \\
+    7& 30 & 20 & no change \\
+    8& 20 & 30 & no change \\
+ \\\bottomrule
+  \end{tabular}
+\bigskip
+
+ Bellow we analyze the findings:
+
+\begin{tabular}{rccccc}\toprule
+From&From id&To&To id&Flow&Capacity\\\midrule
+2&1&45&19&6&6\\
+2&1&46&18&12&12\\
+3W&17&46&18&2&2\\
+3E&16&4E&15&4&4\\
+2S&2&6&13&24&24\\
+52&10&8&9&16&16\\
+52&10&7&11&4&4\\
+52&10&51&25&2&2\\
+R&27&b&26&8&8\\
+10&7&7&11&10&10\\
+7&11&51&25&28&28\\
+7&11&50&24&34&34\\
+5&12&49&23&12&12\\
+46&18&47&22&20&20\\
+4W&20&5&12&4&4\\
+4W&20&49&23&10&10\\
+4W&20&48&21&10&10\\
+b&28&H&30&19&19\\
+b&26&51&25&8&8\\
+50&24&b&33&17&17\\
+49&23&b&35&2&2\\
+b&29&H&30&5&5\\
+H&30&1&42&16&16\\
+1&38&2&46&30&30\\
+b&35&1&38&2&2\\
+b&34&4&39&36&36\\
+4&39&8&44&16&16\\
+4&39&5&45&36&36\\
+b&33&4&39&17&17\\
+7&40&8&44&24&24\\
+b&31&S&41&10&10\\
+1&42&B&50&10&10\\
+M&43&9&49&3&3\\
+5&45&9&49&25&25\\
+2&46&6&48&29&29\\
+ \\\bottomrule
+  \end{tabular}
+\bigskip
+
+  In case 1, the new bottleneck table becomes as above.
+
+  \begin{tabular}{rccccc}\toprule
+From&From id&To&To id&Flow&Capacity   \\\midrule
+2   &1      &45&19   &6   &6          \\
+2   &1      &46&18   &12  &12         \\
+3W  &17     &46&18   &2   &2          \\
+3W  &17     &4W&20   &34  &34         \\
+3E  &16     &4E&15   &4   &4          \\
+2S  &2      &6 &13   &24  &24         \\
+52  &10     &8 &9    &16  &16         \\
+52  &10     &7 &11   &4   &4          \\
+52  &10     &51&25   &2   &2          \\
+R   &27     &b &26   &8   &8          \\
+10  &7      &7 &11   &10  &10         \\
+7   &11     &51&25   &28  &28         \\
+7   &11     &50&24   &34  &34         \\
+5   &12     &49&23   &12  &12         \\
+46  &18     &47&22   &20  &20         \\
+4W  &20     &5 &12   &4   &4          \\
+4W  &20     &49&23   &20  &20         \\
+4W  &20     &48&21   &10  &10         \\
+b   &28     &H &30   &19  &19         \\
+b   &26     &51&25   &8   &8          \\
+50  &24     &b &33   &17  &17         \\
+49  &23     &b &35   &2   &2          \\
+b   &29     &H &30   &5   &5          \\
+H   &30     &1 &42   &16  &16         \\
+1   &38     &2 &46   &30  &30         \\
+b   &35     &1 &38   &2   &2          \\
+b   &34     &4 &39   &36  &36         \\
+4   &39     &8 &44   &16  &16         \\
+4   &39     &5 &45   &36  &36         \\
+b   &33     &4 &39   &17  &17         \\
+b   &32     &7 &40   &29  &29         \\
+7   &40     &8 &44   &24  &24         \\
+b   &31     &S &41   &10  &10         \\
+1   &42     &B &50   &10  &10         \\
+M   &43     &9 &49   &3   &3          \\
+5   &45     &9 &49   &25  &25         \\
+2   &46     &6 &48   &29  &29         \\
+ \\\bottomrule
+  \end{tabular}
+\bigskip
+
+  In case 2, the new bottleneck becomes as above.
+
+ \begin{tabular}{rccccc}\toprule
+From&From id&To&To id&Flow&Capacity\\\midrule
+2   &1      &45&19   &6   &6        \\
+2   &1      &46&18   &12  &12       \\
+3W  &17     &46&18   &2   &2        \\
+3W  &17     &4W&20   &34  &34       \\
+3E  &16     &4E&15   &4   &4        \\
+2S  &2      &6 &13   &24  &24       \\
+52  &10     &8 &9    &16  &16       \\
+52  &10     &7 &11   &4   &4        \\
+52  &10     &51&25   &2   &2        \\
+R   &27     &b &26   &8   &8        \\
+10  &7      &7 &11   &10  &10       \\
+7   &11     &51&25   &28  &28       \\
+7   &11     &50&24   &34  &34       \\
+5   &12     &49&23   &12  &12       \\
+46  &18     &47&22   &20  &20       \\
+4W  &20     &5 &12   &4   &4        \\
+4W  &20     &49&23   &10  &10       \\
+4W  &20     &48&21   &20  &20       \\
+b   &28     &H &30   &19  &19       \\
+b   &26     &51&25   &8   &8        \\
+50  &24     &b &33   &17  &17       \\
+49  &23     &b &35   &2   &2        \\
+b   &29     &H &30   &5   &5        \\
+H   &30     &1 &42   &16  &16       \\
+1   &38     &2 &46   &30  &30       \\
+b   &35     &1 &38   &2   &2        \\
+b   &34     &4 &39   &36  &36       \\
+4   &39     &8 &44   &16  &16       \\
+4   &39     &5 &45   &36  &36       \\
+b   &33     &4 &39   &17  &17       \\
+b   &32     &7 &40   &29  &29       \\
+7   &40     &8 &44   &24  &24       \\
+b   &31     &S &41   &10  &10       \\
+1   &42     &B &50   &10  &10       \\
+M   &43     &9 &49   &3   &3        \\
+5   &45     &9 &49   &25  &25       \\
+2   &46     &6 &48   &29  &29       \\
+ \\\bottomrule
   \end{tabular}
   \bigskip
 
-  In case 4, the new bottleneck becomes
-  \begin{quote}
-      1--44, 3--2, $[\ldots]$
-  \end{quote}
-  The comrade from Minsk is advised to $[\ldots]$.
+ In case 3, the new bottleneck becomes as above.
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+Our thorough investigation has uncovered that decreasing the Minsk capacity by up to 20 in total is acceptable and will not affect our Motherland's Glory. 
+
+ Additionally, Independent sources suggest that the Party Secretary of Minsk has recently acquired a rare taste in gold. Capitalist gold. And from our findings it is clear that the Minsk infrastructure is struggling with a "financial deficit". Insinuating counter-revolutionary intent would be absurd of such an outstanding member of the Party. However, we recommend immediate and permanent disciplinary action be taken as a precaution.
 
   \section{Implementation details}
 
-  We use a straighforward implemenation of Bellman--Quine's flow algorithm as described in Bronstein, \emph{Foundations of Algorithms}, chap.~6.
-  We use Prim's algorithm to find an augmenting path and also implement the neat trick of flow by recomputing the inverse of the antisnail every 2nd iteration.\sidenote{%
-    Replace by a description of what you actually do.
-  }
+   We use an implemenation of Ford--Fulkerson's flow method in order to calculate the maximum flow, as described in Jon Kleinberg and Eva Tardos, \emph{Algorithm Design}, chap.~7.
 
-  The running time is $[\ldots]$.
+  Since the railway is considered undirected, we have decided to represent it with an undirected graph that we treat as a directed graph in which each undirected edge is represented by two directed edges facing opposite directions and holding equal capacities.
+We create the residual network by decreasing the flow of a reversed edge whenever a flow of an edge is increased.
+As for the actual traversal of the graph, a simple Breadth First traversal was used.
 
-  We have implemented each undirected edge in the input graph as a $[\ldots]$.
-  In the corresponding residual graph, the edge is represented by a $[\ldots]$.
+\bigskip
+
+  The running time is O((m+n)C) for graphs with m edges, n nodes, and the largest capacity in the graph C. Represented as O(mC) since m > n/2.
+
+\bigskip
+
   Our datatype for edge is this:
-  \sidenote{%
-    What I wrote here is complete nonsense, of course.
-    Replace by a description of your actual implementation---what \emph{did} you use?
-    A pair of directed edges?
-    A single undirected edges with a bit to see in which direction the flow goes?
-    As indicated, it makes sense to actually include your datatype for edge in the report.
-    Here, and in general, it makes sense to have written short and sweet code.
-  }
+
   \begin{verbatim}
-    class FlowEdge
-    {
-      Vertex from, to;
-      GUISwingComponentFactory bar;
-      Edge next, parent, foo;
-    }
+class Edge:
+    origin: int
+    destination: int
+    capacity: int
+    flow: int
+    is_reversed: bool
   \end{verbatim}
 
 
