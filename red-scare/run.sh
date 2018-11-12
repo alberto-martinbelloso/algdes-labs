@@ -1,5 +1,9 @@
 #!/bin/bash
+declare -i count=0
 for filename in ./data/*.txt; do
-  time python3 runner.py < $filename
+  echo $count,$filename
+  python3 runner.py < $filename
+  printf "\n"
+  count=count+1
 done
 
