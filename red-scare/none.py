@@ -1,10 +1,10 @@
 import networkx as nx
+from model import Graph
 from nx_parser import parse_to_nx
 
 
-def none(graph):
+def none(graph: Graph) -> int:
     """
-    - None
         Remove all the red vertices (except start and finish) and edges to them
         Find shortest path
         Returns the shortest path
@@ -13,19 +13,16 @@ def none(graph):
     try:
         remove_red_vertices(graph)
         g = parse_to_nx(graph.vertex_list,graph.edge_list)
-        print("Calculating path")
         path = nx.shortest_path(g, source = graph.start_vertex.name, target = graph.end_vertex.name)
         if len(path) > 0:
             return path
         else:
             return -1
     except Exception:
-        print("Path not found!")
         return -1
 
 
 def remove_red_vertices(graph):
-    print("removing red vertices")
     removed = []
     for v in graph.vertex_list[::-1]:
         if v != graph.start_vertex and v != graph.end_vertex:
