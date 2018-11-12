@@ -32,5 +32,5 @@ def parse_input(file) -> Graph:
     return Graph(start_vertex, end_vertex, vertexes, edges, number_red_vertex)
 
 
-the_file = stdin
-print(parse_input(the_file))
+#the_file = stdin
+#print(parse_input(the_file))
