@@ -1,8 +1,5 @@
 import networkx as nx
 from nx_parser import parse_to_nx
-from input_parser import parse_input
-from sys import stdin
-
 
 
 def none(graph):
@@ -43,10 +40,10 @@ def remove_red_vertices(graph):
     return graph
 
 
-cmd_input = stdin
-print("Parsing...")
-input_res = parse_input(cmd_input)
-
-
-print(none(input_res))
+# cmd_input = stdin
+# print("Parsing...")
+# input_res = parse_input(cmd_input)
+#
+#
+# print(none(input_res))
 
