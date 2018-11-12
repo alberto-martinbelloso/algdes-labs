@@ -11,7 +11,7 @@ def none(graph: Graph) -> int:
         If no such path exists return -1
     """
     edges = only_black_edges(graph.edge_list, (graph.start_vertex, graph.end_vertex))
-    vertexes = only_black_vertexes(graph.vertex_list)
+    vertexes = only_black_vertexes(graph.vertex_list, (graph.start_vertex, graph.end_vertex))
 
     try:
         g = parse_to_nx(vertexes, edges)
@@ -29,8 +29,8 @@ def only_black_edges(edge_list: list, non_removable_vertexes: tuple) -> list:
     return [edge for edge in edge_list if not is_removable_red_edge(edge, non_removable_vertexes)]
 
 
-def only_black_vertexes(vertexes: list) -> list:
-    return [v for v in vertexes if not v.is_red]
+def only_black_vertexes(vertexes: list, non_removable_vertexes: tuple) -> list:
+    return [v for v in vertexes if not v.is_red or v in non_removable_vertexes]
 
 
 def is_removable_red_edge(edge, non_removable_vertexes: tuple) -> bool:
