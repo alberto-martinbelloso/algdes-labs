@@ -7,35 +7,35 @@ def none(graph: Graph) -> int:
     """
         Remove all the red vertices (except start and finish) and edges to them
         Find shortest path
-        Returns the shortest path
+        Returns the length of the shortest path
         If no such path exists return -1
     """
+    edges = only_black_edges(graph.edge_list, (graph.start_vertex, graph.end_vertex))
+    vertexes = only_black_vertexes(graph.vertex_list)
+
     try:
-        remove_red_vertices(graph)
-        g = parse_to_nx(graph.vertex_list,graph.edge_list)
-        path = nx.shortest_path(g, source = graph.start_vertex.name, target = graph.end_vertex.name)
-        if len(path) > 0:
-            return path
+        g = parse_to_nx(vertexes, edges)
+        length = nx.shortest_path_length(g, source=graph.start_vertex.name,
+                                         target=graph.end_vertex.name)
+        if length > 0:
+            return length
         else:
             return -1
-    except Exception:
+    except nx.NetworkXNoPath:
         return -1
 
 
-def remove_red_vertices(graph):
-    removed = []
-    for v in graph.vertex_list[::-1]:
-        if v != graph.start_vertex and v != graph.end_vertex:
-            if v.is_red:
-                graph.vertex_list.remove(v)
-                removed.append(v.name)
+def only_black_edges(edge_list: list, non_removable_vertexes: tuple) -> list:
+    return [edge for edge in edge_list if not is_removable_red_edge(edge, non_removable_vertexes)]
 
-    for e in graph.edge_list[::-1]:
-        if e.origin.name in removed or e.destination.name in removed:
-            graph.edge_list.remove(e)
 
-    return graph
+def only_black_vertexes(vertexes: list) -> list:
+    return [v for v in vertexes if not v.is_red]
 
+
+def is_removable_red_edge(edge, non_removable_vertexes: tuple) -> bool:
+    return (edge.origin not in non_removable_vertexes and edge.origin.is_red) or \
+           (edge.destination.is_red and edge.destination not in non_removable_vertexes)
 
 # cmd_input = stdin
 # print("Parsing...")
@@ -43,4 +43,3 @@ def remove_red_vertices(graph):
 #
 #
 # print(none(input_res))
-
