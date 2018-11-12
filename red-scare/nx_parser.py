@@ -1,7 +1,7 @@
 import networkx as nx
 
 def parse_to_nx(vertex_list, edge_list, towards_black_weight = None, towards_red_weight = None) -> nx.Graph:
-    G = nx.Graph()
+    G = nx.DiGraph()
     
     for v in vertex_list:
         G.add_node(v.name)
@@ -14,6 +14,5 @@ def parse_to_nx(vertex_list, edge_list, towards_black_weight = None, towards_red
                 G.add_edge(e.origin.name, e.destination.name, weight=towards_black_weight)
         else:
             G.add_edge(e.origin.name, e.destination.name)
-            G.add_edge(e.destination.name, e.origin.name)
-            
+
     return G
