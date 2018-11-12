@@ -16,7 +16,7 @@ def few(graph: Graph) -> int:
         return -1
 
     for name in shortest_path_name_list:
-        shortest_path_vertex_list = [x for x in graph.vertex_list if x.name == name]
+        shortest_path_vertex_list.append(next(x for x in graph.vertex_list if x.name == name))
 
     shortest_red_vertex_list = [x for x in shortest_path_vertex_list if x.is_red]
     return len(shortest_red_vertex_list)
