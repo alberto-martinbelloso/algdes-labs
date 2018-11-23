@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Edge:
     origin = None
     destination = None
@@ -48,3 +51,9 @@ class Graph:
 
     def __repr__(self) -> str:
         return self.__str__()
+
+
+class Result(Enum):
+    YES = 1
+    NO = 2
+    UNDEFINED = 3
