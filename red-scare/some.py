@@ -34,8 +34,7 @@ def some(graph: Graph):
 
 
 def is_undirected(graph: Graph) -> bool:
-    return True
-    pass
+    return not graph.is_directed
 
 
 def transform_to_nx(g: Graph, new_vertex_mapping: dict):

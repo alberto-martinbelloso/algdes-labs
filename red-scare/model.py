@@ -37,17 +37,21 @@ class Graph:
     end_vertex = None
     vertex_list = None
     edge_list = None
+    is_directed: bool
 
-    def __init__(self, start_vertex, end_vertex, vertex_list, edge_list, number_red_vertex) -> None:
+    def __init__(self, start_vertex, end_vertex, vertex_list, edge_list, number_red_vertex,
+                 is_directed) -> None:
         self.number_red_vertex = number_red_vertex
         self.start_vertex = start_vertex
         self.end_vertex = end_vertex
         self.vertex_list = vertex_list
         self.edge_list = edge_list
+        self.is_directed = is_directed
 
     def __str__(self) -> str:
         return f"(number_red_vertex: {self.number_red_vertex}, start_vertex: {self.start_vertex}, " \
-               f"end_vertex: {self.end_vertex}, vertex_list: {self.vertex_list}, edge_list: {self.edge_list})"
+               f"end_vertex: {self.end_vertex}, vertex_list: {self.vertex_list}, edge_list: {self.edge_list}," \
+               f"is_directed: {self.is_directed})"
 
     def __repr__(self) -> str:
         return self.__str__()
