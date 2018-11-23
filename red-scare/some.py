@@ -1,10 +1,10 @@
 import networkx as nx
-from networkx import draw
-from networkx.algorithms.flow import shortest_augmenting_path
 
 from model import Graph, Result, Vertex
 
-start_vertex_name = "______s"
+# these names are designed to be unlikely to conflict with actuall node names
+# if one really wants to ensure that no conflict is possible one can add some escaping mechanism to the input parser
+start_vertex_name = "________s"
 stop_vertex_name = "________t"
 
 
@@ -21,6 +21,7 @@ def some(graph: Graph):
     }
     nx_graph = transform_to_nx(graph, new_vertex_mapping)
 
+    # check for every red vertex if it is possible to construct flow from start/end to the vertex
     for red_vertex in [v for v in graph.vertex_list if v.is_red]:
         nx_graph.add_edge(new_vertex_mapping[red_vertex].in_name(), stop_vertex_name, capacity=2)
         flow_value = nx.algorithms.flow.maximum_flow_value(nx_graph, start_vertex_name,
