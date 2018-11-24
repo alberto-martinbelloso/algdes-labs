@@ -12,7 +12,7 @@ def some(graph: Graph):
     if graph.number_red_vertex == 0:
         return Result.NO
 
-    if not is_undirected(graph):
+    if is_directed(graph):
         return Result.UNDEFINED
 
     new_vertex_mapping = {
@@ -37,8 +37,8 @@ def some(graph: Graph):
     return Result.NO
 
 
-def is_undirected(graph: Graph) -> bool:
-    return not graph.is_directed
+def is_directed(graph: Graph) -> bool:
+    return graph.is_directed
 
 
 def transform_to_nx(g: Graph, new_vertex_mapping: dict):

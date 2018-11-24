@@ -32,9 +32,9 @@ def format_many_res(res: int) -> str:
 
 
 def format_some_res(res: Result) -> str:
-    if res == 1:
+    if res == Result.YES:
         return "true"
-    elif res == 2:
+    elif res == Result.NO:
         return "false"
     else:
         return "?!"
