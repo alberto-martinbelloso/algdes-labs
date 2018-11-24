@@ -24,8 +24,11 @@ def some(graph: Graph):
     # check for every red vertex if it is possible to construct flow from start/end to the vertex
     for red_vertex in [v for v in graph.vertex_list if v.is_red]:
         nx_graph.add_edge(new_vertex_mapping[red_vertex].in_name(), stop_vertex_name, capacity=2)
-        flow_value = nx.algorithms.flow.maximum_flow_value(nx_graph, start_vertex_name,
-                                                           stop_vertex_name)
+        try:
+            flow_value = nx.algorithms.flow.maximum_flow_value(nx_graph, start_vertex_name,
+                                                               stop_vertex_name)
+        except nx.NetworkXNoPath:
+            flow_value = 0
 
         if flow_value == 2:
             return Result.YES
