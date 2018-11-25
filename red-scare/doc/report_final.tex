@@ -111,7 +111,7 @@ wall-z-10000&70001&false&0&?!&1&false\\
 The columns are for the problems Alternate, Few, Many, None, and Some.
 The table entries either give the answer, or for those cases where there is a reason for our inability to find a good algorithm (because the problem is hard), we wrote `?!'.
 
-For the complete table of all results, see the tab-separted text file {\tt results.txt}.
+For the complete table of all results, see the tab-separated text file {\tt results.txt}.
 
 \subsection{Methods}
 
@@ -122,19 +122,20 @@ The running time of this algorithm is $O(N + N^2)$ where $N$ is a number of vert
 
 \subsection{Some}
 
-We solved the "some" problem for undirected graphs using the maximum flow (Ford-Fulkerson) algorithm. The graph was adapted by transforming it into a directed graph, then assigning capacity 1 to each vertex (by transforming them into 2 vertexes one with all incoming edges one with all outgoing ones and connecting them with a single directed edge with capacity 1). Additionally, an extra start vertex was added and connected to the original start and finish with edges of capacity 1. Lastly, a new finish vertex was added, connected to one of the red vertexes with an edge of capacity 2). If the flow found was of value 2, the algorithm found the path, if not, it would switch the edge between the sink and a red vertex to a next red vertex and repeat, until a path was found or all the red vertexes were checked.
-The "some" problem cannot be easily solved for directed graphs and burden of proof is left as an exercise for the reader.[1.]
+We solved the "some" problem for undirected graphs using the maximum flow (Ford-Fulkerson) algorithm. The graph was adapted by transforming it into a directed graph, then assigning capacity 1 to each vertex (by transforming them into 2 vertices one with all incoming edges one with all outgoing ones and connecting them with a single directed edge with capacity 1). Additionally, an extra start vertex was added and connected to the original start and finish with edges of capacity 1. Lastly, a new finish vertex was added, connected to one of the red vertices with an edge of capacity 2). If the flow found was of value 2, the algorithm found the path, if not, it would switch the edge between the sink and a red vertex to a next red vertex and repeat, until a path was found or all the red vertices were checked.
+The "some" problem cannot be easily solved for directed graphs and burden of proof is left as an exercise for the reader.
 
 \subsection{Many}
-Why cannot solve all graphs -> longest path problem - can solve only directed acyclic graphs
+
+Many can be solved by adding weight of one to all edges going to red vertices and all other edges with a weight of 0. Then finding the longest possible path. Unfortunately the longest path problem can only be solved for directed acyclic graphs in a polynomial time. For other graphs the longest path problem is NP and no known polynomial algorithm exists. This can be proven by reducing the Hamiltonian path problem to Many problem. This can be done by making all vertices red and then checking if result of many is equal to the amount of vertices in the graph. If so, then a Hamiltonian path exists through the graph.
 
 \subsection{Few}
 
-For problem F, we solved each instance $G$ by putting 
+For problem few, we added weights of 1 to all edges going to red vertices and marked all other edges with weight 0. Then we used the Dijkstra's shortest path algorithm to find the shortest path and count the amount of red vertices in that path.
 
 \subsection{Alternate}
 
-For  problem A, we solved each instance $G$ by removing all edges that are connected with vertices that are both red or black and and computing shortest path from $start$ to $finish$ by using Dijkstra's algorithm.
-The running time of this algorithm is $O(E + V^2)$ where  $E$ is number of edges and $V$ is number of vertices. Our implementation spends $0.0232$ seconds on the instance common-1-5000.txt with $n = 5000$
+For problem A, we solved each instance $G$ by removing all edges that are connected with vertices that are both red or black and and computing shortest path from $start$ to $finish$ by using Dijkstra's algorithm.
+The running time of this algorithm is $O(E + V^2)$ where  $E$ is number of edges and $V$ is number of vertices. Our implementation spends $0.0232$ seconds on the instance common-1-5000.txt with $n = 5000$.
 
 \end{document}
